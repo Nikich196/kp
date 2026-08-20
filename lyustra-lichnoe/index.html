@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1110" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Сайт для «Люстры»">
+<meta property="og:description" content="Предложение по разработке сайта. Никита Сацюк, Брест.">
+<title>Сайт для «Люстры»</title>
+</head>
+<body>
+<style>
+:root{
+  --bg:#FAF9F6; --card:#FFFFFF; --ink:#141312; --mut:#635F58; --line:#E4E0D8; --hair:#CFC9BD;
+  --acc:#0C5546; --acc-d:#083C31; --acc-s:#E8F0EC; --gold:#8A6414; --gold-s:#F6F0E1;
+  --warn:#8C3A1E; --warn-s:#F9ECE6;
+  --sh:0 1px 2px rgba(20,19,18,.05), 0 10px 30px -20px rgba(20,19,18,.22);
+  --dot:rgba(12,85,70,.06); --grid:22px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1110; --card:#171A18; --ink:#EAE8E3; --mut:#9C978E; --line:#272B28; --hair:#333833;
+  --acc:#54C2A4; --acc-d:#8FD9C3; --acc-s:#13221E; --gold:#D5A64E; --gold-s:#241E13;
+  --warn:#E28B68; --warn-s:#2A1913; --sh:none;
+  --dot:rgba(84,194,164,.09);
+}}
+:root[data-theme="dark"]{
+  --bg:#0F1110; --card:#171A18; --ink:#EAE8E3; --mut:#9C978E; --line:#272B28; --hair:#333833;
+  --acc:#54C2A4; --acc-d:#8FD9C3; --acc-s:#13221E; --gold:#D5A64E; --gold-s:#241E13;
+  --warn:#E28B68; --warn-s:#2A1913; --sh:none;
+  --dot:rgba(84,194,164,.09);
+}
+*{box-sizing:border-box}
+html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;color:var(--ink);counter-reset:sec;
+  background-color:var(--bg);
+  background-image:radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size:var(--grid) var(--grid);
+  background-position:-1px -1px;
+  font:17px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
+.w{max-width:720px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,.disp{font-family:Georgia,"Times New Roman",serif;text-wrap:balance;font-weight:700}
+p{margin:.75em 0}
+a{color:var(--acc)}
+ul{padding-left:1.15em;margin:.7em 0}
+li{margin:.38em 0}
+li::marker{color:var(--acc)}
+strong{font-weight:650}
+small{font-size:13px;color:var(--mut);line-height:1.5;display:block}
+
+/* ---------- ОБЛОЖКА ---------- */
+.cover{min-height:calc(100vh - 40px);display:flex;flex-direction:column;justify-content:space-between;
+  padding:60px 0 40px;break-after:page}
+.cover-top{}
+.mark{display:flex;align-items:center;gap:11px;margin-bottom:56px}
+.mark i{display:block;width:34px;height:34px;border-radius:9px;background:var(--acc);position:relative;flex:0 0 auto}
+.mark i::after{content:"";position:absolute;inset:9px;border:2px solid var(--bg);border-radius:3px}
+.mark span{font-family:Georgia,serif;font-size:15.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.rules{display:flex;flex-direction:column;gap:5px;margin:0 0 30px}
+.rules b{display:block;height:3px;border-radius:2px;background:var(--acc)}
+.rules b:nth-child(1){width:86px}
+.rules b:nth-child(2){width:52px;opacity:.62}
+.rules b:nth-child(3){width:26px;opacity:.34}
+.cover h1{font-size:3.4rem;line-height:1.04;letter-spacing:-.028em;margin:0 0 .32em}
+.cover .sub{font-size:1.2rem;line-height:1.5;color:var(--mut);max-width:30em;margin:0}
+.cover-bottom{border-top:1px solid var(--hair);padding-top:22px;
+  display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;align-items:flex-end}
+.cover-bottom .who{font-size:15px;line-height:1.65}
+.cover-bottom .who b{font-family:Georgia,serif;font-size:18px;display:block;margin-bottom:3px}
+.cover-bottom .meta{font-size:14px;color:var(--mut);text-align:right;line-height:1.7}
+.forwho{margin:34px 0 0;padding:16px 19px;background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--acc);border-radius:4px 11px 11px 4px;font-size:15.5px}
+.forwho b{font-family:Georgia,serif;font-size:16.5px}
+
+/* ---------- СЕКЦИИ ---------- */
+h2{counter-increment:sec;font-size:1.62rem;line-height:1.2;letter-spacing:-.015em;
+  margin:2.5em 0 .7em;padding-top:1.5em;border-top:1px solid var(--hair);position:relative}
+h2::before{content:counter(sec,decimal-leading-zero);position:absolute;top:1.45em;left:0;
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12px;letter-spacing:.1em;
+  color:var(--gold);font-weight:700}
+h2{padding-left:0;padding-top:2.6em}
+h3{font-size:1.14rem;margin:1.6em 0 .4em;color:var(--acc)}
+h2+p,h2+.box,h2+.quote{margin-top:.2em}
+
+/* ---------- БЛОКИ ---------- */
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:21px 23px;margin:1.3em 0;box-shadow:var(--sh)}
+.box.acc{background:var(--acc-s);border-color:transparent}
+.box.warn{background:var(--warn-s);border-color:transparent}
+.box.warn h3{color:var(--warn)}
+.box h3{margin-top:0}
+.box>*:last-child{margin-bottom:0}
+.quote{position:relative;background:var(--acc-s);padding:22px 24px 22px 28px;border-radius:12px;margin:1.4em 0}
+.quote::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--acc)}
+.quote p{margin:.35em 0}
+
+/* ---------- ФАКТЫ ---------- */
+.facts{display:grid;gap:13px;margin:1.4em 0}
+@media(min-width:600px){.facts{grid-template-columns:1fr 1fr}}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 19px;box-shadow:var(--sh);
+  position:relative;overflow:hidden}
+.fact::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);opacity:.85}
+.fact.bad::after{background:var(--warn)}
+.fact .n{font-family:Georgia,serif;font-size:2.1rem;line-height:1;color:var(--gold);font-weight:700;
+  display:block;margin-bottom:8px;letter-spacing:-.02em}
+.fact.bad .n{color:var(--warn)}
+.fact p{margin:0;font-size:15px}
+.src{font-size:11.5px;color:var(--mut);margin-top:10px;line-height:1.45;
+  padding-top:8px;border-top:1px dotted var(--hair)}
+
+/* ---------- ЦЕНЫ ---------- */
+.plans{display:grid;gap:16px;margin:1.5em 0}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);
+  padding:22px 24px 24px;position:relative}
+.plan.best{border-color:var(--acc);border-width:1.5px;
+  background:linear-gradient(var(--acc-s) 0 160px, var(--card) 160px)}
+.tag{display:inline-block;background:var(--card);color:var(--acc);border:1.5px solid var(--acc);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  padding:4px 12px;border-radius:20px;margin:0 0 11px}
+.plan h3{margin:0;color:var(--ink);font-size:1.32rem;font-family:Georgia,serif}
+.price{font-family:Georgia,serif;font-size:2.5rem;color:var(--gold);font-weight:700;line-height:1;
+  margin:12px 0 3px;letter-spacing:-.02em}
+.price span{font-size:.95rem;font-family:inherit;color:var(--mut);font-weight:400;letter-spacing:0}
+.plan>small{margin-bottom:14px}
+.plan ul{margin:.2em 0 0}
+.term{font-size:14px;color:var(--mut);margin-top:14px;padding-top:13px;border-top:1px dotted var(--hair)}
+
+/* ---------- РАБОТЫ ---------- */
+.work{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:21px 23px;margin:1.2em 0;box-shadow:var(--sh)}
+.work .t{font-family:Georgia,serif;font-size:1.24rem;font-weight:700;margin-bottom:4px}
+.work .u{font-size:14px;word-break:break-all;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 0}
+.chip{font-size:12px;background:var(--acc-s);color:var(--acc);padding:4px 11px;border-radius:20px;font-weight:600}
+
+/* ---------- ШАГИ ---------- */
+.steps{counter-reset:s;list-style:none;padding:0;margin:1.3em 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 0 48px;margin:0 0 17px;min-height:32px}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+  width:32px;height:32px;border-radius:9px;background:var(--acc-s);color:var(--acc);
+  border:1.5px solid var(--acc);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.steps b{display:block;font-size:16.5px}
+
+/* ---------- ТАБЛИЦЫ ---------- */
+.tw{overflow-x:auto;margin:1.3em 0;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--acc-s);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);font-weight:700;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--gold);font-weight:650;white-space:nowrap}
+
+/* ---------- ФИНАЛ ---------- */
+.cta{background:var(--acc-s);border:1.5px solid var(--acc);border-radius:16px;
+  padding:32px 28px;margin:2.4em 0 1.2em;text-align:center}
+.cta h2{border:0;padding:0;margin:0 0 12px;font-size:1.62rem;color:var(--acc);counter-increment:none}
+.cta h2::before{content:none}
+.cta p{margin:.45em 0;color:var(--ink)}
+.cta a{color:var(--acc);text-decoration:underline;text-underline-offset:3px;font-weight:700}
+.cta .big{font-family:Georgia,serif;font-size:1.8rem;display:block;margin:16px 0 5px;
+  letter-spacing:.01em;color:var(--acc);font-weight:700}
+.sign{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;
+  margin:1.6em 0 0;padding-top:18px;border-top:1px solid var(--hair)}
+.sign .n{font-family:Georgia,serif;font-size:1.15rem}
+.sign .c{font-size:14px;color:var(--mut);text-align:right;line-height:1.6}
+.fine{font-size:12px;color:var(--mut);line-height:1.55;margin-top:2.2em;padding-top:1.2em;border-top:1px solid var(--hair)}
+
+/* ---------- ПЕЧАТЬ ---------- */
+@page{margin:14mm 13mm}
+@media print{
+  body{background-image:none}
+
+  html,body{background:#fff}
+  body{font-size:11pt;line-height:1.52}
+  .w{max-width:100%;padding:0}
+  .cover{min-height:auto;height:245mm;padding:0}
+  .cover h1{font-size:40pt}
+  .cover .sub{font-size:13.5pt}
+  .box,.fact,.work,.tw,.quote,.cta,.steps li{break-inside:avoid}
+  .plan{break-inside:auto}
+  .plan h3,.plan .price,.plan>small,.tag{break-after:avoid}
+  .plan li{break-inside:avoid}
+  .plan ul{orphans:3;widows:3}
+  h2,h3{break-after:avoid}
+  h2{margin-top:1.7em}
+  .facts{grid-template-columns:1fr 1fr}
+  .plans{display:block}
+  .plan{margin:0 0 16px}
+  .plan:last-child{margin-bottom:0}
+  .plan{padding:14px 17px 16px;margin:0 0 12px}
+  .plan h3{font-size:14pt}
+  .price{font-size:20pt;margin:7px 0 1px}
+  .plan>small{margin-bottom:8px;font-size:9pt}
+  .plan ul{font-size:10.5pt}
+  .plan ul li{margin:.2em 0}
+  .term{margin-top:9px;padding-top:8px;font-size:9.5pt}
+  .tag{font-size:9pt;padding:3px 10px;margin-bottom:8px}
+  .box{padding:16px 19px;margin:1em 0}
+  .fact{padding:15px 16px}
+  .work{padding:16px 19px;margin:.9em 0}
+  .cta{padding:24px 22px;margin:1.6em 0 1em}
+  .price{font-size:26pt}
+  a{text-decoration:none}
+}
+@media(max-width:560px){
+  .cover h1{font-size:2.3rem}
+  .cover .sub{font-size:1.06rem}
+  h2{font-size:1.35rem}
+  .price{font-size:2rem}
+  .cover-bottom{flex-direction:column;align-items:flex-start}
+  .cover-bottom .meta{text-align:left}
+}
+</style>
+
+<div class="w">
+
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark"><i></i><span>Предложение для ресторана «Люстра»</span></div>
+    <div class="rules"><b></b><b></b><b></b></div>
+    <h1>Вас любят гости,<br>но не находит поиск</h1>
+    <p class="sub">Своё место в интернете, куда можно привести гостя: меню с фотографиями, бронь столика в два касания и собственная страница по запросу «Люстра Брест» — там, где сейчас одни магазины люстр и светильников.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="who"><b>Никита Сацюк</b>Разработка и сопровождение сайтов · Брест</div>
+    <div class="meta">+375 33 699-59-29<br>Viber · Telegram<br>nikich.2018.s@gmail.com</div>
+  </div>
+</div>
+
+<h2>Что я посмотрел перед тем, как писать</h2>
+
+<p>Прежде чем присылать предложение, я изучил, как «Люстра» выглядит в интернете глазами гостя. Вот что увидел.</p>
+
+<div class="box acc">
+<h3>Сначала хорошее — и это важно</h3>
+<p>У вас <strong>5,0 на Яндекс.Картах при более чем 45 отзывах</strong> и 4,8 на RestaurantGuru — <strong>в верхней части рейтинга по Бресту, где на площадке около 350 заведений города</strong>. В отзывах отдельно хвалят интерьер, персонал, напитки и атмосферу.</p>
+<p>И видно, что вы этим занимаетесь: меню в Яндекс.Картах обновлялось в августе, за считаные дни до того, как я это писал. Это редкость — большинство заведений заводят карточку и забывают про неё на год.</p>
+<p><strong>Проблема не в качестве. Проблема в том, что об этом качестве знают не все, кто мог бы.</strong></p>
+</div>
+
+<h3>А теперь то, что мешает</h3>
+
+<div class="facts">
+  <div class="fact bad">
+    <span class="n">45 → 6</span>
+    <p>Более 45 отзывов у вас в Яндекс.Картах и всего 6 в Google. Вся репутация заперта в одной системе.</p>
+    <div class="src">Яндекс.Карты и Google, проверено 17.08.2026</div>
+  </div>
+  <div class="fact bad">
+    <span class="n">69%</span>
+    <p>А доля Google Карт среди онлайн-карт Беларуси по последним открытым данным (2025 год) — 69%, у Яндекса 29%. То есть <strong>две трети людей смотрят туда, где у вас шесть отзывов</strong>.</p>
+    <div class="src">RocketData, анализ 266 тыс. локаций, 2025</div>
+  </div>
+  <div class="fact bad">
+    <span class="n">Не вас</span>
+    <p>По запросу «Люстра Брест» первая страница — магазины люстр и светильников. Вашего ресторана там нет: название омонимично, и поиск отдаёт его товарной выдаче.</p>
+    <div class="src">Выдача Google и Яндекс, 17.08.2026</div>
+  </div>
+  <div class="fact bad">
+    <span class="n">Нет сайта</span>
+    <p>У «Люстры» нет своей страницы в интернете. Всё, что о вас есть, живёт на чужих площадках и по их правилам.</p>
+    <div class="src">Проверено 17.08.2026</div>
+  </div>
+</div>
+
+<div class="box warn">
+<h3>И главное: человеку некуда прийти</h3>
+<p>Всё, что вы делаете хорошо — интерьер, кухня, атмосфера — живёт в карточках на чужих площадках и в соцсети. Своего места, куда можно привести человека, у вас нет.</p>
+<p>В отзывах гости пару раз упоминали, что не всегда получалось забронировать столик. Это ровно та задача, которую закрывает автоматическая бронь на сайте: гость сам выбирает дату, время и количество человек, вы получаете уведомление в Telegram. Никто никому не дозванивается.</p>
+</div>
+
+<div class="box acc">
+<h3>Про карточку в Яндексе — она у вас отличная</h3>
+<p>Отдельно скажу: карточку на Яндекс.Картах вы ведёте лучше, чем большинство заведений Бреста. Меню обновлено, фото есть, отзывы собираются. Её трогать не надо, и я не буду делать вид, что там есть что чинить.</p>
+<p>Слабое место — Google. Но с ним всё сложнее, и об этом ниже честно.</p>
+</div>
+
+<h2>Что это значит в деньгах</h2>
+
+<p>Вы уже платите за то, чтобы вас находили — просто платите не деньгами, а упущенными гостями. Вот три вещи, которые считаются.</p>
+
+<div class="box">
+<ul>
+<li><strong>Аренда чужой площадки стоит дороже своего сайта.</strong> Размещение заведения на Relax.by — <strong>от 370 рублей в месяц</strong> за базовый тариф и от 555 за «Базовое размещение +». При оплате за год у них действует скидка 20%, то есть примерно 3 550–5 330 рублей за год аренды строчки в чужом справочнике. Свой сайт покупается один раз и остаётся вашим навсегда.
+<small>Тарифы Relax.by проверены 17.08.2026 на info.relax.by/eda</small></li>
+
+<li style="margin-top:14px"><strong>Если когда-нибудь запустите доставку</strong> — агрегаторы берут от <strong>25 до 35% с заказа</strong> в зависимости от того, чьи курьеры; из белорусских площадок открыто публиковалась ставка 30% от суммы чека. Свой сайт с приёмом заказов — это те же гости, но без этой доли сверху. Точную вашу ставку вы знаете лучше меня — назовите, и посчитаем на ваших числах.
+<small>LOGCONSULT / belretail.by, исследование рынка доставки 2020 года — приведено как порядок величин, ставки с тех пор менялись</small></li>
+
+<li style="margin-top:14px"><strong>Половина заинтересованных гостей идёт на сайт.</strong> В США доля тех, кто после хороших отзывов заходит на сайт заведения, выросла с 32% в 2019 году до 54% в 2026-м. У нас тренд тот же, просто с отставанием. Если сайта нет — эта половина упирается в пустоту.
+<small>BrightLocal, февраль 2026, данные по рынку США — приведено как отраслевой ориентир</small></li>
+</ul>
+</div>
+
+<div class="box acc">
+<h3>Про нейросети — коротко и честно</h3>
+<p>Люди всё чаще не гуглят, а спрашивают: «посоветуй, где хорошо поужинать в Бресте». <strong>22% гостей уже выбирали заведение через ИИ.</strong> При этом <strong>83% заведений вообще не попадают в ответы ChatGPT</strong> по локальным запросам — против 14% невидимых в обычном поиске Google. Невидимыми оказываются и заведения с отличным рейтингом: одних отзывов для этого мало.</p>
+<p>Заставить нейросеть советовать именно вас нельзя — и кто обещает такое, тот врёт. Но сделать так, чтобы она о вас знала и могла назвать, — можно. Это техническая работа, и я умею её делать.</p>
+<small>DoorDash, Restaurant Industry Trends Report, май 2026 (опрос потребителей США); Local Falcon, март 2026 (сопоставление 189 905 ответов ChatGPT с выдачей Google, преимущественно США). Приведено как отраслевой ориентир — прямой статистики по Беларуси пока нет.</small>
+</div>
+
+<h2>Что предлагаю сделать</h2>
+
+<p>Сайт «Люстры» на собственном домене, который решает четыре задачи. Свободное имя подберём вместе — короткое и такое, чтобы его легко было продиктовать по телефону.</p>
+
+<div class="box">
+<ul>
+<li><strong>Меню с фотографиями</strong> — актуальное, с ценами, красиво свёрстанное. Плюс QR-код на столики: гость наводит телефон и сразу видит меню, не спрашивая официанта.</li>
+<li><strong>Автоматическая бронь столика.</strong> Гость выбирает дату, время и количество человек — заявка приходит вам в Telegram сразу. Не теряется в директе и не зависит от того, взял ли кто-то трубку.</li>
+<li><strong>Своя посадочная страница.</strong> С карт и из Instagram кнопка «Сайт» будет вести на вашу страницу с фотографиями зала, меню и кнопкой брони — а не в ленту соцсети.</li>
+<li><strong>Отдельные страницы под каждое направление.</strong> Кухня, бар, банкеты, летняя площадка — те направления, которые у вас реально есть. Именно отдельные страницы приводят людей из поиска: человек ищет «где отметить день рождения в Бресте» и попадает сразу на нужную.</li>
+</ul>
+</div>
+
+<p>И отдельно — <strong>техническая работа над тем, чтобы вас находили</strong>: настройка сайта под поиск, подключение к Google и Яндексу напрямую, привязка региона «Брест», ускорение загрузки и подготовка данных так, чтобы вас корректно называли нейросети.</p>
+
+<h2>Сколько это стоит</h2>
+
+<p>Три варианта. Точную сумму назову после короткого разговора — возможно, часть пунктов вам не нужна, и выйдет дешевле.</p>
+
+<div class="plans">
+
+<div class="plan">
+  <h3>Базовый</h3>
+  <div class="price">790 <span>BYN</span></div>
+  <small>Готов примерно за неделю</small>
+  <ul>
+    <li>Простой и красивый сайт «Люстры» со своим адресом в интернете</li>
+    <li>Фотографии зала, интерьера и той самой люстры</li>
+    <li>Рассказ о ресторане — коротко и по делу</li>
+    <li>Меню с ценами и фотографиями блюд</li>
+    <li>Контакты, адрес, часы работы, карта проезда</li>
+    <li>Кнопки связи: позвонить, Viber, Telegram, Instagram — в одно касание</li>
+    <li>Работает на телефоне так же, как на компьютере, и грузится быстро</li>
+    <li>Оформление по закону: реквизиты, политика по персональным данным, cookie</li>
+    <li>Запуск под вашим доменом и регистрация в БелГИЭ</li>
+  </ul>
+  <div class="term">Закрывает главное: у «Люстры» появляется своё место в интернете, куда можно привести человека.</div>
+</div>
+
+<div class="plan best">
+  <div class="tag">Рекомендую вам</div>
+  <h3>Оптимальный</h3>
+  <div class="price">1 290 <span>BYN</span></div>
+  <small>Готов за 2–3 недели</small>
+  <ul>
+    <li>Всё из базового набора</li>
+    <li><strong>Отдельные страницы под каждое направление</strong>: кухня, бар, банкеты и мероприятия, летняя площадка — берём то, что у вас есть</li>
+    <li><strong>Автоматическая бронь столика</strong> — гость выбирает дату, время и количество человек, вам приходит уведомление в Telegram</li>
+    <li><strong>QR-код для столиков</strong> — меню открывается с телефона за секунду</li>
+    <li>Новости и афиша: живая музыка, спецпредложения, сезонное меню</li>
+    <li>Отзывы гостей на сайте</li>
+  </ul>
+  <div class="term">У вас не одно направление — кухня, бар, мероприятия. Отдельные страницы под каждое дадут людей из поиска, которых сейчас забирают конкуренты.</div>
+</div>
+
+<div class="plan">
+  <h3>Под ключ</h3>
+  <div class="price">2 180 <span>BYN</span></div>
+  <small>Готов за 3–4 недели · максимальный вариант</small>
+  <p style="margin:.2em 0 .9em;font-size:15.5px">Всё из оптимального набора — <strong>и дальше я довожу до конца всё, что влияет на вашу видимость</strong>. Это тот вариант, который закрывает вашу главную проблему в той части, которая зависит от меня: что «Люстру» не находят и путают с чужими названиями. Карточка Google — отдельно, и почему, объясняю ниже честно.</p>
+  <ul>
+    <li><strong>Настройка под поиск.</strong> Заголовки и описания каждой страницы, микроразметка — то, по чему поисковик понимает, что «Люстра» — это ресторан на 28 Июля в Бресте, а не магазин люстр и не заведение из другого города. Карта сайта, канонические адреса, файл для роботов.</li>
+    <li><strong>Прямое подключение к поисковым системам.</strong> Google Search Console, Яндекс.Вебмастер, Bing. Без этого новый сайт находят месяцами. Плюс мгновенное уведомление об изменениях для Яндекса и Bing — они переобходят сайт быстрее; Google ходит по своему графику, ускорить его не может никто.</li>
+    <li><strong>Привязка региона «Брест»</strong> — чтобы вас показывали своим.</li>
+    <li><strong>Ускорение загрузки.</strong> Скорость влияет и на позицию, и на то, дождётся гость или уйдёт.</li>
+    <li><strong>Карточка в 2ГИС</strong> — заполнение, категории, кухня, часы, фотографии зала.</li>
+    <li><strong>Размещение в справочниках и на городских площадках</strong> — там, где реально ищут заведения Бреста и куда возможна бесплатная подача. Точный список согласуем: подберу профильные для ресторанов и кафе, а не «куда получится». Это и люди, которые ищут через справочники, и ссылки на ваш сайт — поисковики считают их подтверждением, что заведение настоящее.</li>
+    <li><strong>Единые данные о «Люстре» везде.</strong> Название, адрес и телефон посимвольно одинаковые во всех источниках. Расхождения вроде «ул. 28 Июля» и «улица 28 Июля» поисковики считают разными заведениями и понижают оба.</li>
+    <li><strong>Видимость в нейросетях.</strong> Расширенная микроразметка, блоки «прямой ответ» на частые вопросы («работает ли по воскресеньям», «есть ли банкетный зал»), файл с описанием заведения для языковых моделей, разрешение обхода их роботам, внесение в открытые базы, из которых данные берут и карты, и нейросети.</li>
+    <li><strong>Отчёт в конце:</strong> что именно сделано, где «Люстра» теперь есть и что проверить через месяц.</li>
+  </ul>
+  <div class="term">Я делаю всё, что в моих силах, чтобы вас находили — а не просто отдаю сайт, который где-то лежит.</div>
+</div>
+
+</div>
+
+<div class="box">
+<h3>Карточка в Google — отдельно, и вот почему</h3>
+<p>У вас в Google лишь несколько отзывов против нескольких десятков в Яндексе, и это стоит поправить. Но карточку в Google нельзя просто «сделать»: Google требует подтвердить, что вы владеете рестораном — обычно это видеозапись помещения, вывески и рабочего места. С июля 2026 подтверждение почти всегда идёт через видеозапись. Официально проверка занимает до 5 рабочих дней, но на практике бывает дольше, и часть шагов может сделать только владелец.</p>
+<p>Поэтому я не включаю её в наборы и не обещаю сроков, которые от меня не зависят. Если нужно — <strong>250 BYN</strong>: подготовлю данные, фотографии и описания, проведу через проверку и настрою карточку. Но честно: скорость здесь определяет Google, а не я.</p>
+</div>
+
+<div class="box">
+<h3>Расходы, которые идут не мне</h3>
+<div class="tw"><table>
+<tbody>
+<tr><td>Домен .BY на год</td><td class="num">33–40 BYN</td></tr>
+<tr><td>Хостинг</td><td class="num">от 7 BYN / мес</td></tr>
+<tr><td>Госпошлина за регистрацию сайта</td><td class="num">22,50 BYN</td></tr>
+<tr><td>Услуга хостера по подаче в БелГИЭ</td><td class="num">10–20 BYN</td></tr>
+<tr><td><strong>Первый год целиком</strong></td><td class="num">≈ 150–170 BYN</td></tr>
+<tr><td><strong>Каждый следующий год</strong></td><td class="num">≈ 120–125 BYN</td></tr>
+</tbody>
+</table></div>
+<p>Это платится регистратору, хостингу и государству напрямую, не мне. В «первый год целиком» входят домен, хостинг на 12 месяцев, госпошлина и подача в БелГИЭ. Цены проверены 18.08.2026; госпошлина — 0,5 базовой величины (в 2026 году базовая величина 45 рублей). Могу оформить сам с вашего аккаунта, чтобы вам не разбираться.</p>
+</div>
+
+<h2>Могу вести ваш сайт постоянно</h2>
+
+<p>Меню меняется, появляется живая музыка и сезонные предложения, домен надо продлевать. <strong>Мы можем договориться о ведении на постоянной основе</strong> — тогда это моя забота, а не ваша:</p>
+
+<div class="box">
+<ul>
+<li><strong>Сам добавляю новости и афишу</strong> — вы просто говорите, что в эту субботу, остальное делаю я;</li>
+<li><strong>Слежу, чтобы домен и хостинг были оплачены вовремя</strong> — продлеваю сам, вам не нужно помнить про сроки;</li>
+<li>меняю меню, цены, фотографии, часы работы;</li>
+<li>делаю резервные копии и слежу за доступностью: если сайт упадёт, узнаю раньше вас и починю.</li>
+</ul>
+<p>Вы пишете в Telegram: «в пятницу живая музыка» или «обновили сезонное меню» — и это появляется на сайте в тот же день.</p>
+</div>
+
+<p>Три варианта, <strong>первый месяц в любом случае бесплатно</strong>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Вариант</th><th>Что делаю</th><th>В месяц</th></tr></thead>
+<tbody>
+<tr><td><strong>Сайт живёт</strong></td><td>Домен и хостинг оплачиваю и продлеваю я — их стоимость уже внутри этой суммы. Плюс резервные копии, слежу за доступностью и чиню поломки</td><td class="num">55 BYN</td></tr>
+<tr><td><strong>+ изменения</strong></td><td>То же, плюс сам добавляю новости и афишу, меняю меню, цены, фото, часы. Пишете в Telegram — я делаю. Количество правок не считаю</td><td class="num">140 BYN</td></tr>
+<tr><td><strong>Я веду ваш сайт</strong></td><td>То же, плюс новые страницы, работа над позициями в поиске, отчёт: сколько людей пришло и откуда</td><td class="num">340 BYN</td></tr>
+</tbody>
+</table></div>
+
+<p>Без абонемента правки тоже можно поштучно: поменять цену — <strong>25 рублей</strong>, добавить страницу — <strong>90</strong>. <strong>Я работаю за конкретную работу, а не за часы</strong> — сумму вы знаете заранее.</p>
+
+<h2>Мои работы</h2>
+
+<div class="work">
+  <div class="t">Новадар — сайт компании-экспортёра</div>
+  <a class="u" href="https://novadar.vercel.app">novadar.vercel.app</a>
+  <p>Белорусская компания, поставляет за границу грушу и замороженную вишню. Сайт на двух языках, форма заявки, аналитика посещений с корректным согласием на cookie, реквизиты как требует закон. Компания работает на экспорт, поэтому требование о белорусском сервере к ней не относится — ваш сайт сделаю иначе, как требует Указ №60.</p>
+  <div class="chips"><span class="chip">Два языка</span><span class="chip">Заявки</span><span class="chip">Аналитика</span><span class="chip">По закону</span></div>
+</div>
+
+<div class="work">
+  <div class="t">Bloomly — платформа с оплатой и мобильным приложением</div>
+  <a class="u" href="https://bloomly.by">bloomly.by</a>
+  <p>Мой собственный проект: доставка цветов по подписке для Бреста и Минска. Личные кабинеты покупателей и магазинов, каталог, заказы, приём оплаты картой и через ЕРИП, автоматические выплаты магазинам, приложение, которое ставится на телефон прямо с сайта.</p>
+  <p>Показываю, чтобы было понятно: <strong>если понадобится сложное — приём оплаты, доставка, личные кабинеты — я это уже делал</strong>, а не буду разбираться за ваш счёт.</p>
+  <div class="chips"><span class="chip">Онлайн-оплата</span><span class="chip">ЕРИП</span><span class="chip">Личные кабинеты</span><span class="chip">Приложение на телефон</span></div>
+</div>
+
+<h2>Как будем работать</h2>
+
+<ol class="steps">
+<li><b>Разговор, 15–20 минут</b>Можно по телефону, можно я подъеду к вам на 28 Июля.</li>
+<li><b>Смета</b>Точный список работ и итоговая сумма. Она не изменится по ходу.</li>
+<li><b>Предоплата 50% — и я начинаю</b>От вас нужны фотографии зала и блюд, меню, реквизиты.</li>
+<li><b>Показываю готовый сайт</b>На тестовой ссылке. Смотрите, говорите, что поправить.</li>
+<li><b>Правки, оплата, запуск</b>Перенос на ваш домен, регистрация в БелГИЭ, подключение к поисковым системам.</li>
+<li><b>Передача</b>Подписываем акт, отдаю список всех паролей. Сайт ваш.</li>
+</ol>
+
+<div class="box acc">
+<h3>Что вы получаете в собственность</h3>
+<p><strong>Домен оформлен на «Люстру» с первого дня</strong> — не на меня. Хостинг тоже. Права на сайт переходят вам по акту после оплаты: можете дорабатывать его у кого угодно, моё разрешение не нужно. Все пароли отдаю письменным списком.</p>
+</div>
+
+<h2>Что гарантирую, а что нет</h2>
+
+<div class="box">
+<h3>Гарантирую</h3>
+<ul>
+<li><strong>Фиксированную цену</strong> — названная сумма не вырастет по ходу работы.</li>
+<li><strong>Сроки.</strong> Задержу по своей вине — скидка 10% от стоимости работ.</li>
+<li><strong>2 месяца после сдачи</strong> бесплатно исправляю любые технические ошибки.</li>
+<li><strong>Что «Люстру» будет видно:</strong> сайт будет проиндексирован поисковиками, подключён к Google и Яндексу и корректно оформлен. Обычно на это уходит от 3 до 14 дней, а выход в топ по названию заведения занимает 2–4 недели — но конкретную позицию в поиске не гарантирует никто, и я не буду.</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Не гарантирую — и никто честно не может</h3>
+<ul>
+<li><strong>Первое место по запросам вроде «где поужинать в Бресте»</strong> — там годами конкурируют сайты, которым по десять лет.</li>
+<li><strong>Что нейросети будут вас советовать.</strong> Заставить нельзя. Сделать так, чтобы знали и могли назвать, — можно.</li>
+<li><strong>Конкретное количество гостей.</strong> Сайт показывает вас тем, кто ищет. Дальше решают ваша кухня и атмосфера — а с этим у вас, судя по отзывам, всё в порядке.</li>
+</ul>
+</div>
+
+<h2>Обо мне</h2>
+
+<p>Меня зовут Никита Сацюк, я из Бреста, разрабатываю сайты и веб-приложения.</p>
+
+<p><strong>Почему цена такая.</strong> Она ниже, чем у брестских студий, и выше, чем у объявлений «сайт за 250». Студия закладывает в цену менеджера, офис и бухгалтерию — я работаю напрямую, поэтому дешевле и быстрее. А за 250 делают готовый шаблон на конструкторе, размещённый на зарубежном сервере, без документов. И человека, который его делал, вы потом не найдёте.</p>
+
+<p>Я пишу собственный код, поэтому сайт грузится быстро — а скорость напрямую влияет на то, останется гость или уйдёт. И я разбираюсь в белорусских требованиях: регистрация сайта в БелГИЭ по Указу №60, персональные данные, приём онлайн-оплаты через ЕРИП. Это не теория — я проходил всё это на своих проектах.</p>
+
+<div class="box">
+<h3>Как со мной работать официально</h3>
+<p>Я оформлен как <strong>плательщик налога на профессиональный доход</strong> — официальный статус для тех, кто работает на себя; разработка сайтов прямо входит в разрешённый перечень.</p>
+<p>Заключаем договор, подписываем акт выполненных работ, выдаю чек из приложения налоговой. Ваша бухгалтерия проводит это как обычные услуги — никаких удержаний и взносов с вашей стороны, налоги плачу сам.</p>
+</div>
+
+<div class="cta">
+<h2>Следующий шаг</h2>
+<p>Напишите «да» или позвоните — договоримся о встрече на 15 минут в удобное вам время.</p><p>Приеду к вам, покажу на телефоне, как это выглядит вживую, и отвечу на вопросы. После встречи пришлю точную смету — и вы решите. <strong>Встреча ни к чему не обязывает.</strong></p>
+<span class="big">+375 33 699-59-29</span>
+<p>Viber и Telegram — на этом же номере</p>
+<p><a href="mailto:nikich.2018.s@gmail.com">nikich.2018.s@gmail.com</a></p>
+</div>
+
+<div class="fine">
+<p>Предложение действительно <strong>14 дней</strong> с даты отправки. После этого стоимость и сроки пересчитываю под текущую загрузку.</p>
+<p>Настоящее предложение носит информационный характер и не является офертой в значении ст. 405 Гражданского кодекса Республики Беларусь. Окончательный состав работ, сроки и стоимость фиксируются в договоре.</p>
+<p>Данные о «Люстре» собраны из открытых источников 17–18.08.2026: Яндекс.Карты, Google, RestaurantGuru. Если что-то устарело — поправьте, я скорректирую предложение.</p>
+<p>Источники: RocketData (данные I квартала 2025, 266 тыс. локаций), тарифы Relax.by (info.relax.by/eda, проверены 17.08.2026), BrightLocal (февраль 2026), DoorDash Trends 2026, Local Falcon (март 2026), LOGCONSULT / belretail.by (2020). Данные, отмеченные как относящиеся к рынку США, приведены как отраслевой ориентир.</p>
+</div>
+
+<p style="text-align:center"><strong>Никита Сацюк</strong> · Брест</p>
+
+</div>
+
+<style>
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:var(--card);border-top:1px solid var(--line)}
+.bar a{flex:1;display:flex;align-items:center;justify-content:center;
+  padding:13px 10px;border-radius:11px;font-size:15.5px;font-weight:650;text-decoration:none;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.bar .c{background:var(--acc);color:#fff}
+.bar .t{background:var(--acc-s);color:var(--acc);border:1.5px solid var(--acc)}
+@media (max-width:760px){.bar{display:flex} .w{padding-bottom:112px}}
+@media print{.bar{display:none}}
+</style>
+<div class="bar">
+  <a class="c" href="tel:+375336995929">Позвонить</a>
+  <a class="t" href="https://t.me/+375336995929">Telegram</a>
+</div>
+</body>
+</html>

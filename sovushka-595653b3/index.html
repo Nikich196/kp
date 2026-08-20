@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1110" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Сайт для «Совушка»">
+<meta property="og:description" content="Предложение по разработке сайта. Никита Сацюк, Брест.">
+<title>Сайт для «Совушка»</title>
+
+</head>
+<body>
+<style>
+:root{
+  --bg:#FAF9F6; --card:#FFFFFF; --ink:#141312; --mut:#635F58; --line:#E4E0D8; --hair:#CFC9BD;
+  --acc:#0C5546; --acc-d:#083C31; --acc-s:#E8F0EC; --gold:#8A6414; --gold-s:#F6F0E1;
+  --warn:#8C3A1E; --warn-s:#F9ECE6;
+  --sh:0 1px 2px rgba(20,19,18,.05), 0 10px 30px -20px rgba(20,19,18,.22);
+  --dot:rgba(12,85,70,.06); --grid:22px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1110; --card:#171A18; --ink:#EAE8E3; --mut:#9C978E; --line:#272B28; --hair:#333833;
+  --acc:#54C2A4; --acc-d:#8FD9C3; --acc-s:#13221E; --gold:#D5A64E; --gold-s:#241E13;
+  --warn:#E28B68; --warn-s:#2A1913; --sh:none;
+  --dot:rgba(84,194,164,.09);
+}}
+:root[data-theme="dark"]{
+  --bg:#0F1110; --card:#171A18; --ink:#EAE8E3; --mut:#9C978E; --line:#272B28; --hair:#333833;
+  --acc:#54C2A4; --acc-d:#8FD9C3; --acc-s:#13221E; --gold:#D5A64E; --gold-s:#241E13;
+  --warn:#E28B68; --warn-s:#2A1913; --sh:none;
+  --dot:rgba(84,194,164,.09);
+}
+*{box-sizing:border-box}
+html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;color:var(--ink);counter-reset:sec;
+  background-color:var(--bg);
+  background-image:radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size:var(--grid) var(--grid);
+  background-position:-1px -1px;
+  font:17px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
+.w{max-width:720px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,.disp{font-family:Georgia,"Times New Roman",serif;text-wrap:balance;font-weight:700}
+p{margin:.75em 0}
+a{color:var(--acc)}
+ul{padding-left:1.15em;margin:.7em 0}
+li{margin:.38em 0}
+li::marker{color:var(--acc)}
+strong{font-weight:650}
+small{font-size:13px;color:var(--mut);line-height:1.5;display:block}
+
+/* ---------- ОБЛОЖКА ---------- */
+.cover{min-height:calc(100vh - 40px);display:flex;flex-direction:column;justify-content:space-between;
+  padding:60px 0 40px;break-after:page}
+.cover-top{}
+.mark{display:flex;align-items:center;gap:11px;margin-bottom:56px}
+.mark i{display:block;width:34px;height:34px;border-radius:9px;background:var(--acc);position:relative;flex:0 0 auto}
+.mark i::after{content:"";position:absolute;inset:9px;border:2px solid var(--bg);border-radius:3px}
+.mark span{font-family:Georgia,serif;font-size:15.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.rules{display:flex;flex-direction:column;gap:5px;margin:0 0 30px}
+.rules b{display:block;height:3px;border-radius:2px;background:var(--acc)}
+.rules b:nth-child(1){width:86px}
+.rules b:nth-child(2){width:52px;opacity:.62}
+.rules b:nth-child(3){width:26px;opacity:.34}
+.cover h1{font-size:3.4rem;line-height:1.04;letter-spacing:-.028em;margin:0 0 .32em}
+.cover .sub{font-size:1.2rem;line-height:1.5;color:var(--mut);max-width:30em;margin:0}
+.cover-bottom{border-top:1px solid var(--hair);padding-top:22px;
+  display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;align-items:flex-end}
+.cover-bottom .who{font-size:15px;line-height:1.65}
+.cover-bottom .who b{font-family:Georgia,serif;font-size:18px;display:block;margin-bottom:3px}
+.cover-bottom .meta{font-size:14px;color:var(--mut);text-align:right;line-height:1.7}
+.forwho{margin:34px 0 0;padding:16px 19px;background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--acc);border-radius:4px 11px 11px 4px;font-size:15.5px}
+.forwho b{font-family:Georgia,serif;font-size:16.5px}
+
+/* ---------- СЕКЦИИ ---------- */
+h2{counter-increment:sec;font-size:1.62rem;line-height:1.2;letter-spacing:-.015em;
+  margin:2.5em 0 .7em;padding-top:1.5em;border-top:1px solid var(--hair);position:relative}
+h2::before{content:counter(sec,decimal-leading-zero);position:absolute;top:1.45em;left:0;
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12px;letter-spacing:.1em;
+  color:var(--gold);font-weight:700}
+h2{padding-left:0;padding-top:2.6em}
+h3{font-size:1.14rem;margin:1.6em 0 .4em;color:var(--acc)}
+h2+p,h2+.box,h2+.quote{margin-top:.2em}
+
+/* ---------- БЛОКИ ---------- */
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:21px 23px;margin:1.3em 0;box-shadow:var(--sh)}
+.box.acc{background:var(--acc-s);border-color:transparent}
+.box.warn{background:var(--warn-s);border-color:transparent}
+.box.warn h3{color:var(--warn)}
+.box h3{margin-top:0}
+.box>*:last-child{margin-bottom:0}
+.quote{position:relative;background:var(--acc-s);padding:22px 24px 22px 28px;border-radius:12px;margin:1.4em 0}
+.quote::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--acc)}
+.quote p{margin:.35em 0}
+
+/* ---------- ФАКТЫ ---------- */
+.facts{display:grid;gap:13px;margin:1.4em 0}
+@media(min-width:600px){.facts{grid-template-columns:1fr 1fr}}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 19px;box-shadow:var(--sh);
+  position:relative;overflow:hidden}
+.fact::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);opacity:.85}
+.fact.bad::after{background:var(--warn)}
+.fact .n{font-family:Georgia,serif;font-size:2.1rem;line-height:1;color:var(--gold);font-weight:700;
+  display:block;margin-bottom:8px;letter-spacing:-.02em}
+.fact.bad .n{color:var(--warn)}
+.fact p{margin:0;font-size:15px}
+.src{font-size:11.5px;color:var(--mut);margin-top:10px;line-height:1.45;
+  padding-top:8px;border-top:1px dotted var(--hair)}
+
+/* ---------- ЦЕНЫ ---------- */
+.plans{display:grid;gap:16px;margin:1.5em 0}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);
+  padding:22px 24px 24px;position:relative}
+.plan.best{border-color:var(--acc);border-width:1.5px;
+  background:linear-gradient(var(--acc-s) 0 160px, var(--card) 160px)}
+.tag{display:inline-block;background:var(--card);color:var(--acc);border:1.5px solid var(--acc);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  padding:4px 12px;border-radius:20px;margin:0 0 11px}
+.plan h3{margin:0;color:var(--ink);font-size:1.32rem;font-family:Georgia,serif}
+.price{font-family:Georgia,serif;font-size:2.5rem;color:var(--gold);font-weight:700;line-height:1;
+  margin:12px 0 3px;letter-spacing:-.02em}
+.price span{font-size:.95rem;font-family:inherit;color:var(--mut);font-weight:400;letter-spacing:0}
+.plan>small{margin-bottom:14px}
+.plan ul{margin:.2em 0 0}
+.term{font-size:14px;color:var(--mut);margin-top:14px;padding-top:13px;border-top:1px dotted var(--hair)}
+
+/* ---------- РАБОТЫ ---------- */
+.work{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:21px 23px;margin:1.2em 0;box-shadow:var(--sh)}
+.work .t{font-family:Georgia,serif;font-size:1.24rem;font-weight:700;margin-bottom:4px}
+.work .u{font-size:14px;word-break:break-all;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 0}
+.chip{font-size:12px;background:var(--acc-s);color:var(--acc);padding:4px 11px;border-radius:20px;font-weight:600}
+
+/* ---------- ШАГИ ---------- */
+.steps{counter-reset:s;list-style:none;padding:0;margin:1.3em 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 0 48px;margin:0 0 17px;min-height:32px}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+  width:32px;height:32px;border-radius:9px;background:var(--acc-s);color:var(--acc);
+  border:1.5px solid var(--acc);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.steps b{display:block;font-size:16.5px}
+
+/* ---------- ТАБЛИЦЫ ---------- */
+.tw{overflow-x:auto;margin:1.3em 0;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--acc-s);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);font-weight:700;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--gold);font-weight:650;white-space:nowrap}
+
+/* ---------- ФИНАЛ ---------- */
+.cta{background:var(--acc-s);border:1.5px solid var(--acc);border-radius:16px;
+  padding:32px 28px;margin:2.4em 0 1.2em;text-align:center}
+.cta h2{border:0;padding:0;margin:0 0 12px;font-size:1.62rem;color:var(--acc);counter-increment:none}
+.cta h2::before{content:none}
+.cta p{margin:.45em 0;color:var(--ink)}
+.cta a{color:var(--acc);text-decoration:underline;text-underline-offset:3px;font-weight:700}
+.cta .big{font-family:Georgia,serif;font-size:1.8rem;display:block;margin:16px 0 5px;
+  letter-spacing:.01em;color:var(--acc);font-weight:700}
+.sign{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;
+  margin:1.6em 0 0;padding-top:18px;border-top:1px solid var(--hair)}
+.sign .n{font-family:Georgia,serif;font-size:1.15rem}
+.sign .c{font-size:14px;color:var(--mut);text-align:right;line-height:1.6}
+.fine{font-size:12px;color:var(--mut);line-height:1.55;margin-top:2.2em;padding-top:1.2em;border-top:1px solid var(--hair)}
+
+/* ---------- ПЕЧАТЬ ---------- */
+@page{margin:14mm 13mm}
+@media print{
+  body{background-image:none}
+
+  html,body{background:#fff}
+  body{font-size:11pt;line-height:1.52}
+  .w{max-width:100%;padding:0}
+  .cover{min-height:auto;height:245mm;padding:0}
+  .cover h1{font-size:40pt}
+  .cover .sub{font-size:13.5pt}
+  .box,.fact,.work,.tw,.quote,.cta,.steps li{break-inside:avoid}
+  .plan{break-inside:auto}
+  .plan h3,.plan .price,.plan>small,.tag{break-after:avoid}
+  .plan li{break-inside:avoid}
+  .plan ul{orphans:3;widows:3}
+  h2,h3{break-after:avoid}
+  h2{margin-top:1.7em}
+  .facts{grid-template-columns:1fr 1fr}
+  .plans{display:block}
+  .plan{margin:0 0 16px}
+  .plan:last-child{margin-bottom:0}
+  .plan{padding:14px 17px 16px;margin:0 0 12px}
+  .plan h3{font-size:14pt}
+  .price{font-size:20pt;margin:7px 0 1px}
+  .plan>small{margin-bottom:8px;font-size:9pt}
+  .plan ul{font-size:10.5pt}
+  .plan ul li{margin:.2em 0}
+  .term{margin-top:9px;padding-top:8px;font-size:9.5pt}
+  .tag{font-size:9pt;padding:3px 10px;margin-bottom:8px}
+  .box{padding:16px 19px;margin:1em 0}
+  .fact{padding:15px 16px}
+  .work{padding:16px 19px;margin:.9em 0}
+  .cta{padding:24px 22px;margin:1.6em 0 1em}
+  .price{font-size:26pt}
+  a{text-decoration:none}
+}
+@media(max-width:560px){
+  .cover h1{font-size:2.3rem}
+  .cover .sub{font-size:1.06rem}
+  h2{font-size:1.35rem}
+  .price{font-size:2rem}
+  .cover-bottom{flex-direction:column;align-items:flex-start}
+  .cover-bottom .meta{text-align:left}
+}
+</style>
+
+<div class="w">
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark"><i></i><span>Предложение для «Совушка»</span></div>
+    <div class="rules"><b></b><b></b><b></b></div>
+    <h1>Клиенту негде увидеть, чем вы отличаетесь</h1>
+    <p class="sub">Помещение, оборудование, специалисты, документы — всё это стоило денег. Но человек, который ищет услугу в телефоне, ничего из этого не видит и выбирает по тому, что нашёл.</p>
+    <div class="forwho"><b>Для:</b> Совушка &nbsp;·&nbsp; Брест</div>
+  </div>
+  <div class="cover-bottom">
+    <div class="who"><b>Никита Сацюк</b>Разработка и сопровождение сайтов</div>
+    <div class="meta">+375 33 699-59-29<br>Viber · Telegram<br>nikich.2018.s@gmail.com</div>
+  </div>
+</div>
+
+<h2>Одна проверка, которая всё объясняет</h2>
+
+<div class="quote">
+<p><strong>Возьмите телефон и наберите в поиске вашу услугу и слово «Брест».</strong></p>
+<p>Что вы видите? Каталоги, объявления, соцсети — и вас где-то в общем списке — если вы там вообще есть. Человек видит ровно то же самое и выбирает из того, что нашёл.</p>
+</div>
+
+<p>В Беларуси интернетом пользуются <strong>8,47 миллиона человек — 94,3% населения</strong>. Практически весь взрослый платёжеспособный Брест ищет услуги онлайн. Если вас там нет в понятном виде — вас нет для большинства.</p>
+<p class="src">DataReportal, Digital 2026: Belarus — данные международного отчёта по Беларуси</p>
+
+<div class="box warn">
+<h3>Что стоит показать до визита</h3>
+<p>У вас есть то, что клиенту важно знать заранее: помещение, оборудование, специалисты с образованием, а если деятельность лицензируемая — ещё и документы.</p>
+<p>Вопрос только в том, где он может это увидеть до визита. В объявлении — негде. В чужом каталоге — негде. В ленте соцсети пост про диплом теряется за неделю.</p>
+<p><strong>На своей странице всё это лежит постоянно</strong>: специалисты с именами и опытом, оборудование с фотографиями, номер лицензии, цены, отзывы. Причём лицензию клиент может проверить сам — в Беларуси работает Единый реестр лицензий с бесплатным круглосуточным доступом на license.gov.by. Вы за неё платили — дайте ей работать на вас.</p>
+</div>
+
+<div class="box">
+<h3>И один расчёт, который стоит показать бухгалтеру</h3>
+<p>С мая 2022 года в Беларуси действует <strong>сбор за размещение рекламы — 20%</strong> в общем случае и 10% для наружной рекламы и рекламы на транспорте (Указ Президента №131 от 31.03.2022). То есть каждый рубль, отданный за платное размещение, тянет за собой ещё и сбор.</p>
+<p>При этом, по разъяснению МАРТ, <strong>работы по оптимизации собственного сайта под поиск услугами по размещению рекламы не являются и сбором не облагаются</strong>. И сбор не платится, когда рекламодатель размещает рекламу самостоятельно — то есть у себя.</p>
+<p><strong>Разница простая:</strong> платная реклама — это аренда внимания, за которую ещё и доплачиваешь государству, и она заканчивается вместе с бюджетом. Свой сайт в поиске — это актив, который остаётся.</p>
+</div>
+
+<div class="box acc">
+<p><strong>Запись без звонка.</strong> Человек часто не может позвонить: он на работе, в транспорте, или просто не любит звонить. Кнопка «записаться» с выбором дня и времени работает круглосуточно, а вам приходит уведомление в Telegram. Это не про технологии — это про клиентов, которые сегодня до вас не доходят и о которых вы никогда не узнаете.</p>
+</div>
+
+<h2>Что я делаю</h2>
+
+<p>Простыми словами — три вещи. Можно взять одну, можно все.</p>
+
+<div class="box">
+<h3>1. Делаю сайт</h3>
+<p>Страница или несколько, где есть вы: фотографии, услуги с ценами, о вашей работе, контакты, карта проезда, кнопки «позвонить», Viber, Telegram, Instagram.</p>
+<p>По желанию — <strong>форма заявки</strong> (приходит вам на почту и сразу в Telegram), <strong>онлайн-запись</strong> с выбором услугу, дату и время, <strong>раздел с ценами, который вы правите сами</strong> без программиста, <strong>QR-код на витрину и визитки</strong>, второй язык, каталог товаров, приём оплаты картой и через ЕРИП.</p>
+<p>Всё работает на телефоне так же, как на компьютере. Проверяю на реальных устройствах, а не «по макету».</p>
+</div>
+
+<div class="box">
+<h3>2. Запускаю и оформляю по закону</h3>
+<p>Это то, о чём почти никто не говорит, а зря.</p>
+<p>Регистрирую домен и хостинг <strong>на вас</strong>, выкладываю сайт, настраиваю почту на вашем домене, подключаю защищённое соединение.</p>
+<p>Дальше — то, что требует белорусское законодательство:</p>
+<ul>
+<li><strong>Регистрация сайта в БелГИЭ.</strong> По Указу №60 сайт белорусской компании, через который идёт продажа товаров или услуг, обязан стоять на сервере в Беларуси и быть зарегистрирован. Штраф за нарушение — от 450 рублей. Я эту процедуру проходил лично.</li>
+<li><strong>Документы по персональным данным.</strong> Как только на сайте появляется форма «оставьте телефон», вы становитесь оператором персональных данных: нужна политика обработки, правильное согласие, cookie-баннер. Штрафы там серьёзные.</li>
+</ul>
+<p>Многие исполнители размещают белорусский бизнес на зарубежном сервере — это дешевле и быстрее, но формально нарушение, и отвечать будете вы, а не они.</p>
+</div>
+
+<div class="box">
+<h3>3. Веду сайт дальше</h3>
+<p>Сайт — не картина на стене. Домен надо продлевать, прайс обновлять, акции менять. Если этим не заниматься, через год домен уйдёт другому человеку и сайт исчезнет.</p>
+<p>Я беру это на себя: слежу, чтобы всё работало, продлеваю вовремя, вношу изменения по вашей просьбе. Вы пишете в Telegram «поменяйте цену на первичный приём» — я меняю.</p>
+</div>
+
+<h2>Мои работы</h2>
+
+<p>Не описания, а живые сайты — можете открыть прямо сейчас.</p>
+
+<div class="work">
+  <div class="t">Новадар — сайт компании-экспортёра</div>
+  <a class="u" href="https://novadar.vercel.app">novadar.vercel.app</a>
+  <p><small>Компания работает на экспорт, поэтому требование о белорусском сервере к ней не относится. Ваш сайт сделаю иначе — как требует Указ №60.</small></p>
+  <p>Белорусская компания, которая поставляет за границу грушу и замороженную вишню. Задача была — чтобы зарубежные покупатели находили их и оставляли заявки.</p>
+  <p>Сделал сайт на двух языках, форму заявки с отправкой на почту, аналитику посещений с корректным согласием на cookie, вывел реквизиты компании как требует закон.</p>
+  <div class="chips"><span class="chip">Два языка</span><span class="chip">Заявки</span><span class="chip">Аналитика</span><span class="chip">По закону</span></div>
+</div>
+
+<div class="work">
+  <div class="t">Bloomly — платформа с оплатой и приложением на телефоне</div>
+  <a class="u" href="https://bloomly.by">bloomly.by</a>
+  <p>Мой собственный проект, который я разрабатываю сейчас: сервис доставки цветов по подписке для Бреста и Минска.</p>
+  <p>Это уже не сайт, а полноценная платформа: личные кабинеты для покупателей и для магазинов, каталог, заказы, приём оплаты картой и через ЕРИП, автоматический расчёт и выплаты магазинам, приложение, которое ставится на телефон прямо с сайта, без App Store и Google Play.</p>
+  <p>Показываю его не чтобы похвастаться, а чтобы было понятно: <strong>если вам понадобится что-то сложное — приём оплаты, личные кабинеты, свой каталог и заказы — я это уже делал</strong>, а не буду разбираться за ваш счёт.</p>
+  <div class="chips"><span class="chip">Онлайн-оплата</span><span class="chip">ЕРИП</span><span class="chip">Личные кабинеты</span><span class="chip">Приложение на телефон</span><span class="chip">Своя база данных</span></div>
+</div>
+
+<div class="box acc">
+<p><strong>Что это значит для вас.</strong> Я делаю и простые сайты-визитки, и сложные системы. Поэтому вам не придётся менять исполнителя, когда бизнес вырастет: захотите добавить доставку с оплатой, программу лояльности или личный кабинет — это делает тот же человек, который делал сайт.</p>
+</div>
+
+
+<h2>Сколько это стоит</h2>
+
+<p>Цена собирается из того, что нужно именно вам. Ниже — три готовых набора, которые закрывают большинство задач. <strong>Точную цену называю после короткого разговора</strong>, когда пойму, что нужно: часто выходит дешевле, потому что половина пунктов вам не нужна.</p>
+
+<div class="plans">
+
+<div class="plan">
+  <h3>Базовый</h3>
+  <div class="price">790 <span>BYN</span></div>
+  <small>Готов примерно за неделю</small>
+  <ul>
+    <li>Простой и красивый сайт, где есть всё главное о вас</li>
+    <li>Фотографии помещения, оборудования и работ</li>
+    <li>Рассказ о вашей работе — коротко и по делу</li>
+    <li>Услуги и цены</li>
+    <li>Контакты, адрес, часы работы, карта проезда</li>
+    <li>Кнопки связи: позвонить, Viber, Telegram, Instagram — в одно касание</li>
+    <li>Работает на телефоне так же, как на компьютере, и грузится быстро</li>
+    <li>Оформление по закону: реквизиты, политика по персональным данным, cookie</li>
+    <li>Запуск под вашим доменом и регистрация в БелГИЭ</li>
+  </ul>
+  <div class="term">Подходит, если задача — «чтобы нас находили, видели, кто мы, и звонили».</div>
+</div>
+
+<div class="plan best">
+  <div class="tag">Обычно берут этот</div>
+  <h3>Оптимальный</h3>
+  <div class="price">1 290 <span>BYN</span></div>
+  <small>Готов за 2–3 недели</small>
+  <ul>
+    <li>Всё из базового набора</li>
+    <li><strong>Отдельные страницы под каждое ваше направление</strong> — именно это приводит людей из поиска: человек ищет конкретную услугу и попадает сразу на нужную страницу</li>
+    <li><strong>Форма заявки</strong> — приходит вам на почту и сразу в Telegram</li>
+    <li><strong>Онлайн-запись</strong>: клиент сам выбирает услугу, дату и время, вы получаете уведомление. Не теряется в переписке и не зависит от того, взял ли кто-то трубку</li>
+    <li>Новости и акции, которые публикуются на сайте</li>
+    <li>Отзывы клиентов</li>
+    <li>QR-код на витрину и визитки</li>
+  </ul>
+  <div class="term">Подходит, если у вас несколько направлений и вы хотите приходить из поиска, а не только по сарафану.</div>
+</div>
+
+<div class="plan">
+  <h3>Под ключ</h3>
+  <div class="price">2 180 <span>BYN</span></div>
+  <small>Готов за 3–4 недели · максимальный вариант</small>
+  <p style="margin:.2em 0 .9em;font-size:15.5px">Всё из оптимального набора — <strong>и дальше я довожу до конца всё, что влияет на вашу видимость</strong>. Вам не придётся потом искать, кто «займётся продвижением»: сайт сдаётся уже настроенным и работающим на вас.</p>
+  <ul>
+    <li><strong>Настройка под поиск.</strong> Заголовки и описания каждой страницы — то, что человек видит в результатах поиска. Микроразметка: поисковик получает ваш адрес, телефон, часы, услуги и цены в машинном виде, а не догадывается по тексту. Карта сайта, канонические адреса, файл для роботов.</li>
+    <li><strong>Прямое подключение к поисковым системам.</strong> Google Search Console, Яндекс.Вебмастер, Bing. Без этого новый сайт находят месяцами. Плюс мгновенное уведомление об изменениях для Яндекса и Bing — они переобходят сайт быстрее; Google ходит по своему графику, ускорить его не может никто.</li>
+    <li><strong>Привязка региона «Брест»</strong> — чтобы вас показывали своим, а не жителям Москвы.</li>
+    <li><strong>Ускорение загрузки.</strong> Скорость напрямую влияет и на позицию в поиске, и на то, дождётся человек или уйдёт.</li>
+    <li><strong>Карточка в 2ГИС</strong> — заполнение, категории, услуги, часы, фотографии.</li>
+    <li><strong>Размещение в справочниках и на городских площадках</strong> — там, где реально ищут именно вашу нишу и куда возможна бесплатная подача. Список согласуем заранее. Это и люди, которые ищут через каталоги, и ссылки на ваш сайт: поисковики считают их подтверждением, что компания настоящая.</li>
+    <li><strong>Единые данные о вас везде.</strong> Название, адрес и телефон посимвольно одинаковые во всех источниках. Расхождения вроде «ул.» и «улица» поисковики считают разными компаниями и понижают обе.</li>
+    <li><strong>Видимость в нейросетях.</strong> Расширенная микроразметка, блоки «прямой ответ» на частые вопросы, файл с описанием компании для языковых моделей, разрешение обхода для их роботов, внесение в открытые базы, из которых данные берут и карты, и нейросети.</li>
+    <li><strong>Отчёт в конце:</strong> что именно сделано, где вы теперь есть и что проверить через месяц.</li>
+  </ul>
+  <div class="term">Подходит, если задача звучит как «хочу, чтобы о нас узнали», а не «хочу сайт». Я делаю всё, что в моих силах, чтобы вас находили — а не только сайт, который где-то лежит.</div>
+</div>
+
+</div>
+
+<div class="box">
+<h3>Если нужно что-то другое</h3>
+<p>Приём оплаты картой и через ЕРИП, каталог товаров, Telegram-бот для заявок, интеграция с программой учёта, личные кабинеты, второй язык — всё это делается и считается отдельно. Скажите задачу, назову цену <strong>до начала работы</strong>.</p>
+</div>
+
+<div class="box">
+<h3>Карточка в Google — отдельная услуга, и вот почему</h3>
+<p>Карточка компании в Google Картах — вещь полезная, но её нельзя просто «сделать». Google требует подтвердить, что вы действительно владеете этим бизнесом: чаще всего это видеозапись помещения, вывески и рабочего места. С июля 2026 подтверждение почти всегда идёт через видеозапись. Официально проверка занимает до 5 рабочих дней, но на практике бывает дольше, и часть шагов может сделать только владелец.</p>
+<p>Поэтому я не включаю её в наборы и не обещаю сроков, которые от меня не зависят. Если нужно — <strong>250 BYN</strong>: подготовлю все данные, фотографии и описания, проведу через проверку и настрою карточку. Но честно предупреждаю: скорость здесь определяет Google, а не я.</p>
+</div>
+
+<h2>Что входит в цену, а что нет</h2>
+
+<div class="tw"><table>
+<thead><tr><th>Входит в цену</th><th>Не входит</th></tr></thead>
+<tbody>
+<tr><td>Дизайн, тексты по вашим материалам, вёрстка, программирование</td><td>Профессиональная фотосъёмка — приглашаете фотографа сами</td></tr>
+<tr><td>Проверка на телефонах и компьютерах</td><td>Платная реклама и её бюджет</td></tr>
+<tr><td>Запуск: домен, хостинг, почта, защищённое соединение</td><td>Наполнение большим каталогом товаров</td></tr>
+<tr><td>Регистрация в БелГИЭ и документы по персональным данным</td><td>Ведение соцсетей</td></tr>
+<tr><td>Круги правок после показа (2–4 в зависимости от набора)</td><td>Правки по ходу работы не считаю — правим, пока не согласуем финальный вид. Переделка уже принятого — по отдельной цене</td></tr>
+<tr><td>Первый месяц сопровождения бесплатно</td><td>—</td></tr>
+</tbody>
+</table></div>
+
+<h3>Расходы, которые идут не мне</h3>
+
+<div class="tw"><table>
+<thead><tr><th>Что</th><th>Сколько</th><th>Кому</th></tr></thead>
+<tbody>
+<tr><td>Домен .BY на год</td><td class="num">33–40 BYN</td><td>регистратору</td></tr>
+<tr><td>Хостинг</td><td class="num">от 7 BYN / мес</td><td>хостинг-провайдеру</td></tr>
+<tr><td>Госпошлина за регистрацию сайта</td><td class="num">22,50 BYN</td><td>государству, один раз</td></tr>
+<tr><td>Услуга хостера по подаче в БелГИЭ</td><td class="num">10–20 BYN</td><td>хостинг-провайдеру</td></tr>
+<tr><td><strong>Первый год целиком</strong></td><td class="num">≈ 150–170 BYN</td><td></td></tr>
+<tr><td><strong>Каждый следующий год</strong></td><td class="num">≈ 120–125 BYN</td><td></td></tr>
+</tbody>
+</table></div>
+
+<p><small>Цены проверены 18.08.2026. Госпошлина — 0,5 базовой величины (базовая величина в 2026 году — 45 рублей). Могу оформить и оплатить сам с вашего аккаунта, чтобы вам не разбираться — тогда просто добавлю эту сумму в счёт отдельной строкой.</small></p>
+
+<h2>Могу вести ваш сайт постоянно</h2>
+
+<p>Сайт — не картина на стене. Меняются цены, появляются акции и новости, домен нужно продлевать. Если этим не заниматься, через год домен уйдёт другому человеку и сайт просто исчезнет.</p>
+
+<p><strong>Мы можем договориться о ведении на постоянной основе.</strong> Тогда всё это — моя забота, а не ваша:</p>
+
+<div class="box">
+<ul>
+<li><strong>Слежу, чтобы домен и хостинг были оплачены вовремя</strong> — продлеваю сам, вам не нужно помнить про сроки;</li>
+<li><strong>Сам добавляю на сайт новости и акции</strong> — вы просто говорите, что происходит, остальное делаю я;</li>
+<li>меняю прайс, фотографии, часы работы, акции — по вашей просьбе;</li>
+<li>делаю резервные копии и слежу за доступностью: если сайт упадёт, я узнаю раньше вас и починю.</li>
+</ul>
+<p>Вы пишете в Telegram: «поменяйте цену» или «в субботу работаем до 18» — и это появляется на сайте.</p>
+</div>
+
+<p>Три варианта. Выбираете один, <strong>первый месяц в любом случае бесплатно</strong>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Вариант</th><th>Что делаю</th><th>В месяц</th></tr></thead>
+<tbody>
+<tr><td><strong>Сайт живёт</strong></td><td>Домен и хостинг оплачиваю и продлеваю я — их стоимость уже внутри суммы. Плюс резервные копии и слежение за доступностью: если сайт упал, узнаю раньше вас и чиню</td><td class="num">55 BYN</td></tr>
+<tr><td><strong>+ изменения</strong></td><td>То же, плюс сам добавляю новости, меняю прайс, фото, акции, часы. Количество правок не считаю — пишете в Telegram, я делаю</td><td class="num">140 BYN</td></tr>
+<tr><td><strong>Я веду ваш сайт</strong></td><td>То же, плюс новые страницы и разделы, работа над позициями в поиске, ежемесячный отчёт: сколько людей пришло и откуда</td><td class="num">340 BYN</td></tr>
+</tbody>
+</table></div>
+
+<p>Если абонемент не нужен — правки тоже можно поштучно: поменять текст или цену <strong>25 рублей</strong>, добавить страницу <strong>90</strong>. <strong>Я работаю за конкретную работу, а не за часы</strong> — вы всегда знаете сумму заранее.</p>
+
+<h2>Как мы будем работать</h2>
+
+<ol class="steps">
+<li><b>Разговор, 15–20 минут</b>Спрашиваю про вашу работу и что вам нужно. Можно по телефону, можно я подъеду.</li>
+<li><b>Смета</b>Присылаю точный список работ и итоговую сумму. Она не изменится по ходу.</li>
+<li><b>Предоплата 50% — и я начинаю</b>От вас нужны фотографии, прайс, реквизиты и контакты.</li>
+<li><b>Показываю готовый сайт</b>На тестовой ссылке. Смотрите, говорите, что поправить.</li>
+<li><b>Правки</b>Сколько включено в набор.</li>
+<li><b>Оплата и запуск</b>Вторая половина, перенос на ваш домен, регистрация.</li>
+<li><b>Передача</b>Подписываем акт, отдаю список всех паролей и доступов. Сайт ваш.</li>
+</ol>
+
+<div class="box acc">
+<h3>Что вы получаете в собственность</h3>
+<p><strong>Домен оформлен на вас с первого дня</strong> — не на меня. Хостинг тоже. Права на сайт переходят вам по акту после оплаты: можете дорабатывать его у кого угодно, моё разрешение не нужно. Все пароли отдаю письменным списком.</p>
+<p>Обычная история в этой сфере: человек заказал сайт, через год поссорился с исполнителем — и выяснилось, что домен оформлен на исполнителя, доступов нет. <strong>У меня так не может произойти по построению.</strong></p>
+</div>
+
+<h2>Что я гарантирую, а что нет</h2>
+
+<div class="box">
+<h3>Гарантирую</h3>
+<ul>
+<li><strong>Фиксированную цену.</strong> Названная сумма не вырастет по ходу работы.</li>
+<li><strong>Сроки.</strong> Задержу по своей вине — скидка 10% от стоимости работ.</li>
+<li><strong>2 месяца после сдачи</strong> бесплатно исправляю любые технические ошибки сайта.</li>
+<li><strong>Что вас будет видно:</strong> сайт будет проиндексирован, подключён к Google и Яндексу и корректно оформлен. Обычно на это уходит 3–14 дней, выход в топ по вашему названию — 2–4 недели. Но конкретную позицию в поиске не гарантирует никто, и я не буду.</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Не гарантирую — и никто честно не может</h3>
+<ul>
+<li><strong>Первое место по общим запросам</strong> вроде «ветклиника в Бресте». Там годами конкурируют сайты, которым по десять лет. Кто обещает такое за неделю — берёт деньги за невыполнимое.</li>
+<li><strong>Что нейросети будут вас советовать.</strong> Заставить их нельзя. Но те, что ищут в интернете в момент вопроса, найдут вас — если данные разложены так, чтобы машина их поняла. Это я и делаю.</li>
+<li><strong>Конкретное количество клиентов или заявок.</strong> Сайт показывает вас тем, кто ищет. Придут ли они — зависит ещё и от ваших фотографий, цен и отзывов.</li>
+</ul>
+</div>
+
+<h2>Обо мне</h2>
+
+<p>Меня зовут Никита Сацюк, я из Бреста, занимаюсь разработкой сайтов и веб-приложений.</p>
+
+<p><strong>Почему у меня такая цена.</strong> Она ниже, чем у брестских студий, и выше, чем у объявлений «сайт за 250». Причина простая: студия закладывает в цену менеджера, офис и бухгалтерию — я работаю напрямую, поэтому дешевле и быстрее. А объявления за 250 — это готовый шаблон на конструкторе, размещённый на зарубежном сервере, без документов. И человека, который его делал, вы потом не найдёте.</p>
+
+<p>Я делаю на собственном коде, поэтому сайт грузится быстро — а скорость напрямую влияет на то, останется человек или уйдёт. И я разбираюсь в белорусских требованиях: регистрация в БелГИЭ, персональные данные, приём онлайн-оплаты через ЕРИП. Это не теория, я проходил всё это на своих проектах.</p>
+
+<div class="box">
+<h3>Как со мной работать официально</h3>
+<p>Я оформлен как <strong>плательщик налога на профессиональный доход</strong> — это официальный статус для тех, кто работает на себя. Разработка сайтов прямо входит в разрешённый перечень.</p>
+<p>Вам это значит: заключаем договор, подписываем акт выполненных работ, я выдаю чек из приложения налоговой. Ваша бухгалтерия проводит это как обычные услуги. Никаких дополнительных удержаний и взносов с вашей стороны — налоги я плачу сам.</p>
+</div>
+
+<div class="cta">
+<h2>Следующий шаг</h2>
+<p>Напишите «да» или позвоните — договоримся о встрече на 15 минут в удобное вам время.</p><p>Задам несколько вопросов про вашу работу, покажу примеры и пришлю точную смету. <strong>Встреча ни к чему не обязывает.</strong></p>
+<span class="big">+375 33 699-59-29</span>
+<p>Viber и Telegram — на этом же номере</p>
+<p><a href="mailto:nikich.2018.s@gmail.com">nikich.2018.s@gmail.com</a></p>
+</div>
+
+<div class="fine">
+<p>Предложение действительно <strong>14 дней</strong> с даты отправки. После этого стоимость и сроки пересчитываю под текущую загрузку.</p>
+<p>Настоящее предложение носит информационный характер и не является офертой в значении ст. 405 Гражданского кодекса Республики Беларусь. Окончательный состав работ, сроки и стоимость фиксируются в договоре.</p>
+<p>Источники: DataReportal, Digital 2026: Belarus; Указ Президента Республики Беларусь №131 от 31.03.2022 о сборе за размещение рекламы и разъяснения МАРТ; Единый реестр лицензий (license.gov.by); Указ №60 и ст. 23.9 КоАП.</p>
+</div>
+
+<p style="text-align:center"><strong>Никита Сацюк</strong> · Брест</p>
+
+</div>
+
+<style>
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:var(--card);border-top:1px solid var(--line)}
+.bar a{flex:1;display:flex;align-items:center;justify-content:center;
+  padding:13px 10px;border-radius:11px;font-size:15.5px;font-weight:650;text-decoration:none;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.bar .c{background:var(--acc);color:#fff}
+.bar .t{background:var(--acc-s);color:var(--acc);border:1.5px solid var(--acc)}
+@media (max-width:760px){.bar{display:flex} .w{padding-bottom:112px}}
+@media print{.bar{display:none}}
+</style>
+<div class="bar">
+  <a class="c" href="tel:+375336995929">Позвонить</a>
+  <a class="t" href="https://t.me/+375336995929">Telegram</a>
+</div>
+</body>
+</html>
